@@ -83,11 +83,17 @@
     "@angular/router": "~4.3.1",
     "@angularclass/hmr": "~1.2.2",
     "@angularclass/hmr-loader": "^3.0.4",
+    "@ngrx/router-store": "^4.0.4",
+    "@ngrx/store": "^4.0.3",
+    "@ngrx/store-devtools": "^4.0.0",
     "core-js": "^2.4.1",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
+    "json-override": "^0.2.0",
+    "ng-lazyload-image": "^3.3.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "~5.0.2",
+    "typescript": "2.4.0",
     "zone.js": "0.8.14"
   },
   "devDependencies": {

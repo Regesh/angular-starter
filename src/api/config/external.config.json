@@ -1,0 +1,29 @@
+{
+    "routes":[
+        {
+            "title":"slots",
+            "link":"/slots.html",
+            "is_external": true
+        },
+        {
+            "title":"promotions",
+            "link":"/promotions.html",
+            "is_external": true
+        },
+        {
+            "title":"readme",
+            "link":"/readme.html",
+            "is_external": true
+        },
+        {
+            "title":"Slots",
+            "link":"./slots",
+            "is_external":false
+        },
+        {
+            "title":"Home",
+            "link":"./",
+            "is_external":false
+        }
+    ]
+}

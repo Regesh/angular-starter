@@ -4,9 +4,18 @@
 import {
   Component,
   OnInit,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy 
 } from '@angular/core';
-import { AppState } from './app.service';
+
+/** ngrx */
+import 'rxjs/add/operator/let';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './reducers';
+
+
+import { LoaderService } from './core/services/loader.service';
 
 /**
  * App Component
@@ -19,58 +28,22 @@ import { AppState } from './app.service';
     './app.component.css'
   ],
   template: `
-    <nav>
-      <a [routerLink]=" ['./'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Index
-      </a>
-      <a [routerLink]=" ['./home'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Home
-      </a>
-      <a [routerLink]=" ['./detail'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Detail
-      </a>
-      <a [routerLink]=" ['./barrel'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Barrel
-      </a>
-      <a [routerLink]=" ['./about'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        About
-      </a>
-    </nav>
-
+      <routes [sdk-loaded]="sdkLoaded$ | async" [routes]="(config$ | async)?.routes"></routes>
     <main>
       <router-outlet></router-outlet>
     </main>
-
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
-    <footer>
-      <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
-      <div>
-        <a [href]="url">
-          <img [src]="angularclassLogo" width="25%">
-        </a>
-      </div>
-    </footer>
   `
 })
-export class AppComponent implements OnInit {
-  public angularclassLogo = 'assets/img/angularclass-avatar.png';
-  public name = 'Angular 2 Webpack Starter';
-  public url = 'https://twitter.com/AngularClass';
-
+export class AppComponent implements OnInit{
+  config$: Observable<any> = this._store.select(fromRoot.getConfig);
+  sdkLoaded$: Observable<boolean> = this._store.select(fromRoot.getSDKLoaded);
   constructor(
-    public appState: AppState
+    private _store: Store<fromRoot.State>,
+    private _loader: LoaderService
   ) {}
-
-  public ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+  ngOnInit(){
+    this._loader.load();
   }
-
 }
 
 /**

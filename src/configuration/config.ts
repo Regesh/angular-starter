@@ -1,0 +1,19 @@
+export const defaultConfig = {
+    "home":{
+        "gameList":[1,3,4,5]
+    },
+    "routes":[
+        {
+            "title":"slots",
+            "link":"/slots.html"
+        },
+        {
+            "title":"promotions",
+            "link":"/promotions.html"
+        },
+        {
+            "title":"readme",
+            "link":"/readme.html"
+        }
+    ]
+};
